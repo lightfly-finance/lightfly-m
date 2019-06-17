@@ -5,7 +5,7 @@ classdef Fund
     properties (SetAccess = private)
         AppId
         SecretKey 
-        BaseUrl = "http://localhost:8000"
+        BaseUrl = "http://lightfly.cn:80"
     end
     
     methods

@@ -1,11 +1,11 @@
 classdef Stock
-    %UNTITLED2 此处显示有关此类的摘要
-    %   此处显示详细说明
+    % UNTITLED2 此处显示有关此类的摘要
+    % 此处显示详细说明
     
     properties (SetAccess = private)
         AppId
         SecretKey 
-        BaseUrl = "http://localhost:8000"
+        BaseUrl = "http://lightfly:80"
     end
     
     methods
@@ -39,7 +39,8 @@ classdef Stock
         end
         
         function result = daily_history(obj, symbol, date_from, date_to)
-            result = obj.fetch("/api/stock/history/daily", containers.Map(["symbol", "date_from", "date_to"], [symbol, date_from, date_to]));
+            data = obj.fetch("/api/stock/history/daily", containers.Map(["symbol", "date_from", "date_to", "lang"], [symbol, date_from, date_to, "en"]));
+            result = table2timetable(data);
         end
         
         function result = stock_realtime(obj, symbols)
